@@ -119,9 +119,7 @@ let hotelName = "";
 			  hotelsHtml += '<li><span>' + hotel.hotelName + '</span></li>';
 		  }
 	  });
-	  var htmlDetails = `<p><b>First name:</b> ${clientFirstName}</p>
-	   <p><b>Last name:</b> ${clientLastName}</p>
-	   <p><b>Email:</b> ${email}</p>
+	  var htmlDetails = `<p><b>Email:</b> ${email}</p>
 	   <p><b>Phone:</b> ${phoneNumber}</p>
 	   <p><b>Tickets:</b></p>
 	   <ul>
@@ -139,10 +137,19 @@ let hotelName = "";
 	   <p><b>Additional Questions<b></p>
 	   <p>` + (questions ? questions : '') + `</p>
        `;
-	var customerEmail = `<p>Hello and thank you for reaching us at OM US TOUR EXPERIENCE Official website.</p>
-	<p>We recieved your request, in less than 24 hrs one of our agents, will contact you.</p>
+	var customerEmail = `<p>Hello ${clientFirstName} ${clientLastName},
+<br />
+<br />
+Thank you for submitting your request for the ultimate OM US tour experience! </p>
+<p>
+We have received your request. We will contact you within the next 24 hours with confirmation details for your purchase order and the final price to submit payment information. Your order is complete once we have received payment. 
+<br />
+<br />
+<h3>Go OM Nation!</h3></p>
 	<p>Your request details:</p>` + htmlDetails;
-	var agentEmailHtml = `<p>Hello, you have a new request in OM US TOUR EXPERIENCE Website, here are the details: </p>` + htmlDetails;
+	var agentEmailHtml = `<p>Hello, you have a new request in OM US TOUR EXPERIENCE Website, here are the details: </p>
+	<p><b>First name:</b> ${clientFirstName}</p>
+	   <p><b>Last name:</b> ${clientLastName}</p>` + htmlDetails;
 	
 
     transporter.sendMail({
