@@ -107,24 +107,63 @@ let hotelName = "";
       console.log(err);
       res.status(500).json({ message: "Something went wrong", err });
     });
-
+	var ticketsHtml = '';
+	  tickets.forEach((ticket) => {
+		  if(ticket.qty > 0){
+			  ticketsHtml += '<li><span>' + ticket.title + ', Qty: ' + ticket.qty + '</span></li>';
+		  }
+	  });
+	  var hotelsHtml = '';
+	  hotels.forEach((hotel) => {
+		  if(hotel.selected){
+			  hotelsHtml += '<li><span>' + hotel.hotelName + '</span></li>';
+		  }
+	  });
+	  var htmlDetails = `<p><b>First name:</b> ${clientFirstName}</p>
+	   <p><b>Last name:</b> ${clientLastName}</p>
+	   <p><b>Email:</b> ${email}</p>
+	   <p><b>Phone:</b> ${phoneNumber}</p>
+	   <p><b>Tickets:</b></p>
+	   <ul>
+       ${ticketsHtml}
+       </ul>
+	   <p><b>Check-in:</b> ` + (checkIn ? checkIn : 'NOT SELECTED') + `</p>
+	   <p><b>Check-out:</b> ` + (checkOut ? checkOut : 'NOT SELECTED') + `</p>
+	   <p><b>Hotels:</b></p>
+	   <ul>
+       ${hotelsHtml}
+       </ul>
+	   <p><b>Hotel rooms qty:</b> ${hotelRooms}</p>
+	   <p><b>Fan Club No.:</b> ` + (fanClubNumber ? fanClubNumber : '') + `</p>
+	   <p><b>Fan play:</b>${fanPlay}</p>
+	   <p><b>Additional Questions<b></p>
+	   <p>` + (questions ? questions : '') + `</p>
+       `;
+	var customerEmail = `<p>Hello and thank you for reaching us at OM US TOUR EXPERIENCE Official website.</p>
+	<p>We recieved your request, in less than 24 hrs one of our agents, will contact you.</p>
+	<p>Your request details:</p>` + htmlDetails;
+	var agentEmailHtml = `<p>Hello, you have a new request in OM US TOUR EXPERIENCE Website, here are the details: </p>` + htmlDetails;
+	
 
     transporter.sendMail({
-      from: '"OVERSEAS WANTS YOU TO CONFIRM" <myawesome@project.com>',
-      to: email,
-      subject: 'Email Confirmation',
+      from: '"OM US TOUR EXPERIENCE WebSite" <omtesteroverseas@gmail.com>',
+      to: 'ronald@overseasinternational.com',
+      subject: 'New Request for OM US TOUR EXPERIENCE',
       text: 'Go to this link to confirm',
-      html: `Hello and thank you for reaching us at over seas international here are the fields
-       from the form <p>${clientFirstName}</p><p>${clientLastName}</p><p>${checkIn}</p><p>${checkOut}</p>
-       <ul>
-        <li>${fanClubNumber}</li>
-        <li>${fanPlay}</li>
-        <li>${hotelRooms}</li>
-        <li>${hotels}</li>
-       </ul>
-       `
+      html: agentEmailHtml
     })
-    .then(info => console.log(`${info}YOU SENT AN EMAIL`))
+    .then(info => console.log(`${info}YOU SENT AN EMAIL TO AGENT`))
     .catch(error => console.log(error));
+	if(email){
+		transporter.sendMail({
+		  from: '"OM US TOUR EXPERIENCE Official WebSite" <omtesteroverseas@gmail.com>',
+		  to: email,
+		  subject: 'Your request has been received',
+		  text: 'Go to this link to confirm',
+		  html: customerEmail
+		})
+		.then(info => console.log(`${info}YOU SENT AN EMAIL TO CUSTOMER`))
+		.catch(error => console.log(error));
+	}
 });
 module.exports = router;

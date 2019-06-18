@@ -45,10 +45,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(flash());
 
-app.use(cors({
+/*app.use(cors({
   credentials: true,
   origin: ['http://localhost:5000'],
-}));
+}));*/
 
 
 app.use(session({
@@ -59,10 +59,7 @@ app.use(session({
 }));
 
 
-app.use(cors({
-  credentials: true,
-  origin: ['http://localhost:5000'],
-}));
+app.use(cors());
 
 
 
