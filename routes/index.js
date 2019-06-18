@@ -8,8 +8,8 @@ const ShoppingCart = require("../models/shoppingCart");
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: 'omtesteroverseas@gmail.com',
-    pass: 'russ!2345',
+    user: 'omustour@overseasinternational.com',
+    pass: 'Overseas814!',
   },
 
 });
@@ -155,8 +155,8 @@ We have received your request. We will contact you within the next 24 hours with
 	
 
     transporter.sendMail({
-      from: '"OM US TOUR EXPERIENCE WebSite" <omtesteroverseas@gmail.com>',
-      to: 'ronald@overseasinternational.com',
+      from: '"OM US TOUR EXPERIENCE WebSite" <omustour@overseasinternational.com>',
+      to: 'omustour@overseasinternational.com',
       subject: 'New Request for OM US TOUR EXPERIENCE',
       text: 'Go to this link to confirm',
       html: agentEmailHtml
@@ -165,7 +165,7 @@ We have received your request. We will contact you within the next 24 hours with
     .catch(error => console.log(error));
 	if(email){
 		transporter.sendMail({
-		  from: '"OM US TOUR EXPERIENCE Official WebSite" <omtesteroverseas@gmail.com>',
+		  from: '"OM US TOUR EXPERIENCE Official WebSite" <omustour@overseasinternational.com>',
 		  to: email,
 		  subject: 'Your request has been received',
 		  text: 'Go to this link to confirm',
