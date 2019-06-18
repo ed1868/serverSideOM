@@ -110,7 +110,7 @@ let hotelName = "";
 
 
     transporter.sendMail({
-      from: '"Theo Calderon Wants You to Confirm" <myawesome@project.com>',
+      from: '"OVERSEAS WANTS YOU TO CONFIRM" <myawesome@project.com>',
       to: email,
       subject: 'Email Confirmation',
       text: 'Go to this link to confirm',
