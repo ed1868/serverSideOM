@@ -8,8 +8,8 @@ const ShoppingCart = require("../models/shoppingCart");
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
-    user: 'omtesteroverseas@gmail.com',
-    pass: 'russ!2345',
+    user: 'omustour@overseasinternational.com',
+    pass: 'Overseas814!',
   },
 
 });
@@ -22,7 +22,7 @@ router.get("/", (req, res, next) => {
 router.post("/checkout", (req, res, next) => {
   console.log("IT HAS ENTERED THE BACK END");
 
-  
+
 
   const {
     clientFirstName,
@@ -41,6 +41,13 @@ router.post("/checkout", (req, res, next) => {
     ticketOne,
     ticketTwo,
     ticketThree,
+	transportation,
+	address,
+	city,
+	country,
+	nationality,
+	state,
+	zip,
   } = req.body;
 
   let subject = " TESTING THE SUBJECT";
@@ -77,7 +84,7 @@ router.post("/checkout", (req, res, next) => {
     ticketTwo,
     ticketThree,
   });
-  
+
 
   // console.log('this are the hotel rooms', hotels[0]);
   console.log('TICKET ONE ------', ticketOne);
@@ -113,15 +120,20 @@ let hotelName = "";
 			  ticketsHtml += '<li><span>' + ticket.title + ', Qty: ' + ticket.qty + '</span></li>';
 		  }
 	  });
+	  var hotelSelected = '';
 	  var hotelsHtml = '';
 	  hotels.forEach((hotel) => {
 		  if(hotel.selected){
 			  hotelsHtml += '<li><span>' + hotel.hotelName + '</span></li>';
+			  hotelSelected = hotel.hotelName;
 		  }
 	  });
-	  var htmlDetails = `<p><b>First name:</b> ${clientFirstName}</p>
-	   <p><b>Last name:</b> ${clientLastName}</p>
-	   <p><b>Email:</b> ${email}</p>
+
+
+
+
+
+	  var htmlDetails = `<p><b>Email:</b> ${email}</p>
 	   <p><b>Phone:</b> ${phoneNumber}</p>
 	   <p><b>Tickets:</b></p>
 	   <ul>
@@ -136,18 +148,102 @@ let hotelName = "";
 	   <p><b>Hotel rooms qty:</b> ${hotelRooms}</p>
 	   <p><b>Fan Club No.:</b> ` + (fanClubNumber ? fanClubNumber : '') + `</p>
 	   <p><b>Fan play:</b>${fanPlay}</p>
+	   <p><b>Need transportation for the trainings?:</b> ` + (transportation ? 'YES' : 'NO') + `</p>
 	   <p><b>Additional Questions<b></p>
 	   <p>` + (questions ? questions : '') + `</p>
        `;
-	var customerEmail = `<p>Hello and thank you for reaching us at OM US TOUR EXPERIENCE Official website.</p>
-	<p>We recieved your request, in less than 24 hrs one of our agents, will contact you.</p>
-	<p>Your request details:</p>` + htmlDetails;
-	var agentEmailHtml = `<p>Hello, you have a new request in OM US TOUR EXPERIENCE Website, here are the details: </p>` + htmlDetails;
-	
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+		dd = '0'+dd
+	}
+
+	if(mm<10) {
+		mm = '0'+mm
+	}
+
+	var todayFormatted = mm + '/' + dd + '/' + yyyy;
+	var customerEmail = `<p>Hello ${clientFirstName} ${clientLastName},
+		<br />
+		<br />
+		Thank you for submitting your request for the ultimate OM US tour experience! </p>
+		<p>
+		We have received your request. We will contact you within the next 24 hours with confirmation details for your purchase order and the final price to submit payment information. Your order is complete once we have received payment.
+		<br />
+		<br />
+		<h3>Go OM Nation!</h3></p>
+			<p>Your request details:</p>` + htmlDetails;
+	var agentEmailHtml = `<p>Hello, you have a new request in OM US TOUR EXPERIENCE Website, here are the details: </p>
+		<table width="850" style="width:850px;min-width:850px;">
+		  <thead>
+			<tr>
+			  <th><b>First Name</b></th>
+			  <th><b>Last Name</b></th>
+			  <th><b>Email</b></th>
+			  <th><b>Phone number</b></th>
+			  <th><b>Game one</b></th>
+			  <th><b>Game Two</b></th>
+			  <th><b>Game Three</b></th>
+			  <th><b>Check in</b></th>
+			  <th><b>Check out</b></th>
+			  <th><b>#of Nights</b></th>
+			  <th><b>Hotel Selection</b></th>
+			  <th><b># rooms</b></th>
+			  <th><b>OM Fan Club #</b></th>
+			  <th><b>Fan Game</b></th>
+			  <th><b>Transfers</b></th>
+			  <th><b>Notes</b></th>
+			  <th><b>Date of Request</b></th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <td>${clientFirstName}</td>
+			  <td>${clientLastName}</td>
+			  <td>${email}</td>
+			  <td>${phoneNumber}</td>
+			  <td>${tickets[0].qty}</td>
+			  <td>${tickets[1].qty}</td>
+			  <td>${tickets[2].qty}</td>
+			  <td>` + (checkIn ? checkIn : 'NOT SELECTED') + `</td>
+			  <td>` + (checkOut ? checkOut : 'NOT SELECTED') + `</td>
+			  <td></td>
+			  <td>${hotelSelected}</td>
+			  <td>${hotelRooms}</td>
+			  <td>` + (fanClubNumber ? fanClubNumber : '') + `</td>
+			  <td>` + (transportation ? 'YES' : 'NO') + `</td>
+			  <td>${fanPlay}</td>
+			  <td>` + (questions ? questions : '') + `</td>
+			  <td>${todayFormatted}</td>
+			</tr>
+		  </tbody>
+		</table>
+        <h3>Customer Address Information</h3>
+        <table width="650">
+            <tbody>
+            <tr>
+                <td><b>Address:</b> ${address}</td>
+                <td><b>City:</b> ${city}</td>
+            </tr>
+            <tr>
+                <td><b>State:</b> ${state}</td>
+                <td><b>Zip:</b> ${zip}</td>
+            </tr>
+            <tr>
+                <td><b>Country:</b> ${country}</td>
+                <td><b>Nationality:</b> ${nationality}</td>
+            </tr>
+            <tbody>
+        </table>
+		`;
+
 
     transporter.sendMail({
-      from: '"OM US TOUR EXPERIENCE WebSite" <omtesteroverseas@gmail.com>',
-      to: 'ronald@overseasinternational.com',
+      from: '"OM US TOUR EXPERIENCE WebSite" <omustour@overseasinternational.com>',
+      to: 'churromorales20@gmail.com',
       subject: 'New Request for OM US TOUR EXPERIENCE',
       text: 'Go to this link to confirm',
       html: agentEmailHtml
@@ -156,7 +252,7 @@ let hotelName = "";
     .catch(error => console.log(error));
 	if(email){
 		transporter.sendMail({
-		  from: '"OM US TOUR EXPERIENCE Official WebSite" <omtesteroverseas@gmail.com>',
+		  from: '"OM US TOUR EXPERIENCE Official WebSite" <omustour@overseasinternational.com>',
 		  to: email,
 		  subject: 'Your request has been received',
 		  text: 'Go to this link to confirm',
