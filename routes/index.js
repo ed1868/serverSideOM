@@ -87,9 +87,9 @@ router.post("/checkout", (req, res, next) => {
 
 
   // console.log('this are the hotel rooms', hotels[0]);
-  console.log('TICKET ONE ------', ticketOne);
-  console.log('TICKET TWOOOO-------', ticketTwo);
-  console.log('TICKET THREE ---------', ticketThree);
+  // console.log('TICKET ONE ------', ticketOne);
+  // console.log('TICKET TWOOOO-------', ticketTwo);
+  // console.log('TICKET THREE ---------', ticketThree);
 let hotelName = "";
 
   let hotelNameSelector = hotels.map(items => {
