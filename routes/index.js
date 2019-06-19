@@ -42,15 +42,12 @@ router.post("/checkout", (req, res, next) => {
     ticketTwo,
     ticketThree,
 	transportation,
-<<<<<<< HEAD
 	address,
 	city,
 	country,
 	nationality,
 	state,
 	zip,
-=======
->>>>>>> a0757c766f95954910b6653265b3db93e0006f28
   } = req.body;
 
   let subject = " TESTING THE SUBJECT";
@@ -90,9 +87,9 @@ router.post("/checkout", (req, res, next) => {
 
 
   // console.log('this are the hotel rooms', hotels[0]);
-  // console.log('TICKET ONE ------', ticketOne);
-  // console.log('TICKET TWOOOO-------', ticketTwo);
-  // console.log('TICKET THREE ---------', ticketThree);
+  console.log('TICKET ONE ------', ticketOne);
+  console.log('TICKET TWOOOO-------', ticketTwo);
+  console.log('TICKET THREE ---------', ticketThree);
 let hotelName = "";
 
   let hotelNameSelector = hotels.map(items => {
@@ -246,7 +243,7 @@ let hotelName = "";
 
     transporter.sendMail({
       from: '"OM US TOUR EXPERIENCE WebSite" <omustour@overseasinternational.com>',
-      to: 'churromorales20@gmail.com',
+      to: 'omustour@overseasinternational.com',
       subject: 'New Request for OM US TOUR EXPERIENCE',
       text: 'Go to this link to confirm',
       html: agentEmailHtml
