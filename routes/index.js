@@ -128,11 +128,6 @@ let hotelName = "";
 			  hotelSelected = hotel.hotelName;
 		  }
 	  });
-
-
-
-
-
 	  var htmlDetails = `<p><b>Email:</b> ${email}</p>
 	   <p><b>Phone:</b> ${phoneNumber}</p>
 	   <p><b>Tickets:</b></p>
@@ -184,6 +179,14 @@ let hotelName = "";
 			  <th><b>Last Name</b></th>
 			  <th><b>Email</b></th>
 			  <th><b>Phone number</b></th>
+              <th><b>Arrival date</b></th>
+              <th><b>Departure date</b></th>
+              <td><b>Address:</b></td>
+              <td><b>City:</b></td>
+              <td><b>State:</b></td>
+              <td><b>Zip:</b></td>
+              <td><b>Country:</b></td>
+              <td><b>Nationality:</b></td>
 			  <th><b>Game one</b></th>
 			  <th><b>Game Two</b></th>
 			  <th><b>Game Three</b></th>
@@ -194,9 +197,17 @@ let hotelName = "";
 			  <th><b># rooms</b></th>
 			  <th><b>OM Fan Club #</b></th>
 			  <th><b>Fan Game</b></th>
-			  <th><b>Transfers</b></th>
+			  <th><b>Transportation #1</b></th>
+              <th><b>Transportation #2</b></th>
 			  <th><b>Notes</b></th>
 			  <th><b>Date of Request</b></th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
+              <th><b>Status</b></th>
 			</tr>
 		  </thead>
 		  <tbody>
@@ -205,6 +216,14 @@ let hotelName = "";
 			  <td>${clientLastName}</td>
 			  <td>${email}</td>
 			  <td>${phoneNumber}</td>
+              <td>${GETNAME}</td>
+              <td>${GETNAME}</td>
+              <td>${address}</td>
+              <td>${city}</td>
+              <td>${state}</td>
+              <td>${zip}</td>
+              <td>${country}</td>
+              <td>${nationality}</td>
 			  <td>${tickets[0].qty}</td>
 			  <td>${tickets[1].qty}</td>
 			  <td>${tickets[2].qty}</td>
@@ -214,10 +233,18 @@ let hotelName = "";
 			  <td>${hotelSelected}</td>
 			  <td>${hotelRooms}</td>
 			  <td>` + (fanClubNumber ? fanClubNumber : '') + `</td>
-			  <td>` + (transportation ? 'YES' : 'NO') + `</td>
 			  <td>${fanPlay}</td>
+              <td>${TRANSPORTATION}</td>
+              <td>${TRANSPORTATION}</td>
 			  <td>` + (questions ? questions : '') + `</td>
 			  <td>${todayFormatted}</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>PENDING</td>
 			</tr>
 		  </tbody>
 		</table>
