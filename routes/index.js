@@ -172,6 +172,7 @@ let hotelName = "";
 		<h3>Go OM Nation!</h3></p>
 			<p>Your request details:</p>` + htmlDetails;
 	var agentEmailHtml = `<p>Hello, you have a new request in OM US TOUR EXPERIENCE Website, here are the details: </p>
+    ` + htmlDetails + `
 		<table width="850" style="width:850px;min-width:850px;">
 		  <thead>
 			<tr>
