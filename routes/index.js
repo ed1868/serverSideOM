@@ -48,6 +48,7 @@ router.post("/checkout", (req, res, next) => {
 	nationality,
 	state,
 	zip,
+    transports
   } = req.body;
 
   let subject = " TESTING THE SUBJECT";
@@ -235,8 +236,8 @@ let hotelName = "";
 			  <td>${hotelRooms}</td>
 			  <td>` + (fanClubNumber ? fanClubNumber : '') + `</td>
 			  <td>${fanPlay}</td>
-              <td>${TRANSPORTATION}</td>
-              <td>${TRANSPORTATION}</td>
+              <td>${transports[0].qty}</td>
+              <td>${transports[1].qty}</td>
 			  <td>` + (questions ? questions : '') + `</td>
 			  <td>${todayFormatted}</td>
               <td>&nbsp;</td>
