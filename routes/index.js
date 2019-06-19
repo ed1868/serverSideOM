@@ -42,12 +42,15 @@ router.post("/checkout", (req, res, next) => {
     ticketTwo,
     ticketThree,
 	transportation,
+<<<<<<< HEAD
 	address,
 	city,
 	country,
 	nationality,
 	state,
 	zip,
+=======
+>>>>>>> a0757c766f95954910b6653265b3db93e0006f28
   } = req.body;
 
   let subject = " TESTING THE SUBJECT";
