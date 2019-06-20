@@ -88,7 +88,7 @@ router.post("/checkout", (req, res, next) => {
     });
 
 
-    // console.log('this are the hotel rooms', hotels[0]);
+    console.log(transports);
     console.log('TICKET ONE ------', ticketOne);
     console.log('TICKET TWOOOO-------', ticketTwo);
     console.log('TICKET THREE ---------', ticketThree);
@@ -148,8 +148,8 @@ router.post("/checkout", (req, res, next) => {
 	   <p><b>transportation:</b> <br/>
         <ul>
         
-              <li>${transports[0].qty}</li>
-              <li>${transports[1].qty}</li>
+<!--              <li>${transports[0].qty}</li>-->
+<!--              <li>${transports[1].qty}</li>-->
 </ul>
 </p>
 	   <p><b>Additional Questions<b></p>
