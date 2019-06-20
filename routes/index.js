@@ -145,13 +145,13 @@ router.post("/checkout", (req, res, next) => {
 	   <p><b>Hotel rooms qty:</b> ${hotelRooms}</p>
 	   <p><b>Fan Club No.:</b> ` + (fanClubNumber ? fanClubNumber : '') + `</p>
 	   <p><b>Fan play:</b>${fanPlay}</p>
-	   <p><b>transportation:</b> <br/>
+	   <p><b>Transportation:</b> <br/>
         <ul>
         
-<!--              <li>${transportation[0].qty}</li>-->
-<!--              <li>${transportation[1].qty}</li>-->
-</ul>
-</p>
+              <li>${transportation[0].qty}</li>
+              <li>${transportation[1].qty}</li>
+       </ul>
+       </p>
 	   <p><b>Additional Questions<b></p>
 	   <p>` + (questions ? questions : '') + `</p>
        `;
