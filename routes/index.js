@@ -148,8 +148,8 @@ router.post("/checkout", (req, res, next) => {
 	   <p><b>Transportation:</b> <br/>
         <ul>
         
-              <li>${transportation[0].qty}</li>
-              <li>${transportation[1].qty}</li>
+              <li>Training session 07/19 ${transportation[0].qty}</li>
+              <li>Training session 07/23 ${transportation[1].qty}</li>
        </ul>
        </p>
 	   <p><b>Additional Questions<b></p>
@@ -215,7 +215,6 @@ router.post("/checkout", (req, res, next) => {
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
-              <th>&nbsp;</th>
               <th><b>Status</b></th>
 			</tr>
 		  </thead>
@@ -247,7 +246,6 @@ router.post("/checkout", (req, res, next) => {
               <td>${transportation[1].qty}</td>
 			  <td>` + (questions ? questions : '') + `</td>
 			  <td>${todayFormatted}</td>
-              <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
               <td>&nbsp;</td>
