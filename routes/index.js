@@ -3,7 +3,7 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 const nodemailer = require('nodemailer');
 const ShoppingCart = require("../models/shoppingCart");
-
+const MailHandler = require("../utils/mailHandler");
 
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -23,6 +23,10 @@ router.post("/checkout", (req, res, next) => {
     console.log("IT HAS ENTERED THE BACK END");
 
 
+
+
+    // var mailer = new MailHandler();
+    console.log(MailHandler.html());
     const {
         clientFirstName,
         clientLastName,
@@ -67,25 +71,25 @@ router.post("/checkout", (req, res, next) => {
 
     // console.log(`THIS IS THE TOTAL BEFORE SAVING INTO DATABASE ${total}`);
 
-    const newCart = new ShoppingCart({
-        clientFirstName,
-        clientLastName,
-        checkIn,
-        checkOut,
-        currentStep,
-        email,
-        fanClubNumber,
-        fanPlay,
-        hotelRooms,
-        hotels,
-        phoneNumber,
-        questions,
-        tickets,
-        ticketOne,
-        ticketTwo,
-        ticketThree,
-        transportation,
-    });
+    // const newCart = new ShoppingCart({
+    //     clientFirstName,
+    //     clientLastName,
+    //     checkIn,
+    //     checkOut,
+    //     currentStep,
+    //     email,
+    //     fanClubNumber,
+    //     fanPlay,
+    //     hotelRooms,
+    //     hotels,
+    //     phoneNumber,
+    //     questions,
+    //     tickets,
+    //     ticketOne,
+    //     ticketTwo,
+    //     ticketThree,
+    //     transportation,
+    // });
 
 
     console.log(transportation);
@@ -105,17 +109,17 @@ router.post("/checkout", (req, res, next) => {
     })
 
 
-    newCart
-        .save()
-        .then(savedCart => {
-            console.log("you have saved a new shopping cart");
-
-            res.status(200).json(savedCart);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({message: "Something went wrong", err});
-        });
+    // newCart
+    //     .save()
+    //     .then(savedCart => {
+    //         console.log("you have saved a new shopping cart");
+    //
+    //         res.status(200).json(savedCart);
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //         res.status(500).json({message: "Something went wrong", err});
+    //     });
     var ticketsHtml = '';
     tickets.forEach((ticket) => {
         if (ticket.qty > 0) {
@@ -147,7 +151,7 @@ router.post("/checkout", (req, res, next) => {
 	   <p><b>Fan play:</b>${fanPlay}</p>
 	   <p><b>Transportation:</b> <br/>
         <ul>
-        
+
               <li>Training session 07/19 Qty: ${transportation[0].qty}</li>
               <li>Training session 07/23 Qty: ${transportation[1].qty}</li>
        </ul>
