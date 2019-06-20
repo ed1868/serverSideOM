@@ -6,130 +6,130 @@ const ShoppingCart = require("../models/shoppingCart");
 
 
 const transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    user: 'omustour@overseasinternational.com',
-    pass: 'Overseas814!',
-  },
+    service: 'Gmail',
+    auth: {
+        user: 'omustour@overseasinternational.com',
+        pass: 'Overseas814!',
+    },
 
 });
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
-  res.render("index");
+    res.render("index");
 });
 
 router.post("/checkout", (req, res, next) => {
-  console.log("IT HAS ENTERED THE BACK END");
+    console.log("IT HAS ENTERED THE BACK END");
 
 
+    const {
+        clientFirstName,
+        clientLastName,
+        arrival,
+        departure,
+        checkIn,
+        checkOut,
+        currentStep,
+        email,
+        fanClubNumber,
+        fanPlay,
+        hotelRooms,
+        hotels,
+        phoneNumber,
+        questions,
+        tickets,
+        ticketOne,
+        ticketTwo,
+        ticketThree,
+        address,
+        city,
+        country,
+        nationality,
+        state,
+        zip,
+        transports
+    } = req.body;
 
-  const {
-    clientFirstName,
-    clientLastName,
-    checkIn,
-    checkOut,
-    currentStep,
-    email,
-    fanClubNumber,
-    fanPlay,
-    hotelRooms,
-    hotels,
-    phoneNumber,
-    questions,
-    tickets,
-    ticketOne,
-    ticketTwo,
-    ticketThree,
-	transportation,
-	address,
-	city,
-	country,
-	nationality,
-	state,
-	zip,
-    transports
-  } = req.body;
-
-  let subject = " TESTING THE SUBJECT";
-  let message = "THIS IS THE MESSAGE THAT WILL BE SHOWN TO COSTUMERS";
-
-
-  // console.log('THIS IS THE DATA GIVENT TO THE BACKEND',req.body);
-
-  // console.log(`THIS IS THE CARTS PROVIDED BY FRONT END ${cart}`);
-
-  // cart.map(items => {
-  //   console.log("this are the cart item totals");
-  //   let totalPrice = Number(items.totalPrice);
-  //   total += totalPrice;
-  // });
-
-  // console.log(`THIS IS THE TOTAL BEFORE SAVING INTO DATABASE ${total}`);
-
-  const newCart = new ShoppingCart({
-    clientFirstName,
-    clientLastName,
-    checkIn,
-    checkOut,
-    currentStep,
-    email,
-    fanClubNumber,
-    fanPlay,
-    hotelRooms,
-    hotels,
-    phoneNumber,
-    questions,
-    tickets,
-    ticketOne,
-    ticketTwo,
-    ticketThree,
-  });
+    let subject = " TESTING THE SUBJECT";
+    let message = "THIS IS THE MESSAGE THAT WILL BE SHOWN TO COSTUMERS";
 
 
-  // console.log('this are the hotel rooms', hotels[0]);
-  console.log('TICKET ONE ------', ticketOne);
-  console.log('TICKET TWOOOO-------', ticketTwo);
-  console.log('TICKET THREE ---------', ticketThree);
-let hotelName = "";
+    // console.log('THIS IS THE DATA GIVENT TO THE BACKEND',req.body);
 
-  let hotelNameSelector = hotels.map(items => {
-    // console.log(items);
-    if(items.selected == true){
-      hotelName =items.hotelName;
-    }
-    if(items.selected == false){
-      console.log('not the selected hotel');
-    }
-  })
+    // console.log(`THIS IS THE CARTS PROVIDED BY FRONT END ${cart}`);
 
+    // cart.map(items => {
+    //   console.log("this are the cart item totals");
+    //   let totalPrice = Number(items.totalPrice);
+    //   total += totalPrice;
+    // });
 
-  newCart
-    .save()
-    .then(savedCart => {
-      console.log("you have saved a new shopping cart");
+    // console.log(`THIS IS THE TOTAL BEFORE SAVING INTO DATABASE ${total}`);
 
-      res.status(200).json(savedCart);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ message: "Something went wrong", err });
+    const newCart = new ShoppingCart({
+        clientFirstName,
+        clientLastName,
+        checkIn,
+        checkOut,
+        currentStep,
+        email,
+        fanClubNumber,
+        fanPlay,
+        hotelRooms,
+        hotels,
+        phoneNumber,
+        questions,
+        tickets,
+        ticketOne,
+        ticketTwo,
+        ticketThree,
     });
-	var ticketsHtml = '';
-	  tickets.forEach((ticket) => {
-		  if(ticket.qty > 0){
-			  ticketsHtml += '<li><span>' + ticket.title + ', Qty: ' + ticket.qty + '</span></li>';
-		  }
-	  });
-	  var hotelSelected = '';
-	  var hotelsHtml = '';
-	  hotels.forEach((hotel) => {
-		  if(hotel.selected){
-			  hotelsHtml += '<li><span>' + hotel.hotelName + '</span></li>';
-			  hotelSelected = hotel.hotelName;
-		  }
-	  });
-	  var htmlDetails = `<p><b>Email:</b> ${email}</p>
+
+
+    // console.log('this are the hotel rooms', hotels[0]);
+    console.log('TICKET ONE ------', ticketOne);
+    console.log('TICKET TWOOOO-------', ticketTwo);
+    console.log('TICKET THREE ---------', ticketThree);
+    let hotelName = "";
+
+    let hotelNameSelector = hotels.map(items => {
+        // console.log(items);
+        if (items.selected == true) {
+            hotelName = items.hotelName;
+        }
+        if (items.selected == false) {
+            console.log('not the selected hotel');
+        }
+    })
+
+
+    newCart
+        .save()
+        .then(savedCart => {
+            console.log("you have saved a new shopping cart");
+
+            res.status(200).json(savedCart);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({message: "Something went wrong", err});
+        });
+    var ticketsHtml = '';
+    tickets.forEach((ticket) => {
+        if (ticket.qty > 0) {
+            ticketsHtml += '<li><span>' + ticket.title + ', Qty: ' + ticket.qty + '</span></li>';
+        }
+    });
+    var hotelSelected = '';
+    var hotelsHtml = '';
+    hotels.forEach((hotel) => {
+        if (hotel.selected) {
+            hotelsHtml += '<li><span>' + hotel.hotelName + '</span></li>';
+            hotelSelected = hotel.hotelName;
+        }
+    });
+    var htmlDetails = `<p><b>Email:</b> ${email}</p>
 	   <p><b>Phone:</b> ${phoneNumber}</p>
 	   <p><b>Tickets:</b></p>
 	   <ul>
@@ -144,25 +144,31 @@ let hotelName = "";
 	   <p><b>Hotel rooms qty:</b> ${hotelRooms}</p>
 	   <p><b>Fan Club No.:</b> ` + (fanClubNumber ? fanClubNumber : '') + `</p>
 	   <p><b>Fan play:</b>${fanPlay}</p>
-	   <p><b>Need transportation for the trainings?:</b> ` + (transportation ? 'YES' : 'NO') + `</p>
+	   <p><b>transportation:</b> <br/>
+        <ul>
+        
+              <li>${transports[0].qty}</li>
+              <li>${transports[1].qty}</li>
+</ul>
+</p>
 	   <p><b>Additional Questions<b></p>
 	   <p>` + (questions ? questions : '') + `</p>
        `;
-	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
-	var yyyy = today.getFullYear();
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
 
-	if(dd<10) {
-		dd = '0'+dd
-	}
+    if (dd < 10) {
+        dd = '0' + dd
+    }
 
-	if(mm<10) {
-		mm = '0'+mm
-	}
+    if (mm < 10) {
+        mm = '0' + mm
+    }
 
-	var todayFormatted = mm + '/' + dd + '/' + yyyy;
-	var customerEmail = `<p>Hello ${clientFirstName} ${clientLastName},
+    var todayFormatted = mm + '/' + dd + '/' + yyyy;
+    var customerEmail = `<p>Hello ${clientFirstName} ${clientLastName},
 		<br />
 		<br />
 		Thank you for submitting your request for the ultimate OM US tour experience! </p>
@@ -172,7 +178,7 @@ let hotelName = "";
 		<br />
 		<h3>Go OM Nation!</h3></p>
 			<p>Your request details:</p>` + htmlDetails;
-	var agentEmailHtml = `<p>Hello, you have a new request in OM US TOUR EXPERIENCE Website, here are the details: </p>
+    var agentEmailHtml = `<p>Hello, you have a new request in OM US TOUR EXPERIENCE Website, here are the details: </p>
     ` + htmlDetails + `
 		<table width="850" style="width:850px;min-width:850px;">
 		  <thead>
@@ -218,8 +224,8 @@ let hotelName = "";
 			  <td>${clientLastName}</td>
 			  <td>${email}</td>
 			  <td>${phoneNumber}</td>
-              <td>${GETNAME}</td>
-              <td>${GETNAME}</td>
+              <td>${arrival}</td>
+              <td>${departure}</td>
               <td>${address}</td>
               <td>${city}</td>
               <td>${state}</td>
@@ -271,24 +277,24 @@ let hotelName = "";
 
 
     transporter.sendMail({
-      from: '"OM US TOUR EXPERIENCE WebSite" <omustour@overseasinternational.com>',
-      to: 'omustour@overseasinternational.com',
-      subject: 'New Request for OM US TOUR EXPERIENCE',
-      text: 'Go to this link to confirm',
-      html: agentEmailHtml
+        from: '"OM US TOUR EXPERIENCE WebSite" <omustour@overseasinternational.com>',
+        to: 'omustour@overseasinternational.com',
+        subject: 'New Request for OM US TOUR EXPERIENCE',
+        text: 'Go to this link to confirm',
+        html: agentEmailHtml
     })
-    .then(info => console.log(`${info}YOU SENT AN EMAIL TO AGENT`))
-    .catch(error => console.log(error));
-	if(email){
-		transporter.sendMail({
-		  from: '"OM US TOUR EXPERIENCE Official WebSite" <omustour@overseasinternational.com>',
-		  to: email,
-		  subject: 'Your request has been received',
-		  text: 'Go to this link to confirm',
-		  html: customerEmail
-		})
-		.then(info => console.log(`${info}YOU SENT AN EMAIL TO CUSTOMER`))
-		.catch(error => console.log(error));
-	}
+        .then(info => console.log(`${info}YOU SENT AN EMAIL TO AGENT`))
+        .catch(error => console.log(error));
+    if (email) {
+        transporter.sendMail({
+            from: '"OM US TOUR EXPERIENCE Official WebSite" <omustour@overseasinternational.com>',
+            to: email,
+            subject: 'Your request has been received',
+            text: 'Go to this link to confirm',
+            html: customerEmail
+        })
+            .then(info => console.log(`${info}YOU SENT AN EMAIL TO CUSTOMER`))
+            .catch(error => console.log(error));
+    }
 });
 module.exports = router;
