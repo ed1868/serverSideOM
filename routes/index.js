@@ -48,7 +48,7 @@ router.post("/checkout", (req, res, next) => {
         nationality,
         state,
         zip,
-        transports
+        transportation
     } = req.body;
 
     let subject = " TESTING THE SUBJECT";
@@ -84,11 +84,11 @@ router.post("/checkout", (req, res, next) => {
         ticketOne,
         ticketTwo,
         ticketThree,
-        transports,
+        transportation,
     });
 
 
-    console.log(transports);
+    console.log(transportation);
     console.log('TICKET ONE ------', ticketOne);
     console.log('TICKET TWOOOO-------', ticketTwo);
     console.log('TICKET THREE ---------', ticketThree);
@@ -148,8 +148,8 @@ router.post("/checkout", (req, res, next) => {
 	   <p><b>transportation:</b> <br/>
         <ul>
         
-<!--              <li>${transports[0].qty}</li>-->
-<!--              <li>${transports[1].qty}</li>-->
+<!--              <li>${transportation[0].qty}</li>-->
+<!--              <li>${transportation[1].qty}</li>-->
 </ul>
 </p>
 	   <p><b>Additional Questions<b></p>
@@ -243,8 +243,8 @@ router.post("/checkout", (req, res, next) => {
 			  <td>${hotelRooms}</td>
 			  <td>` + (fanClubNumber ? fanClubNumber : '') + `</td>
 			  <td>${fanPlay}</td>
-              <td>${transports[0].qty}</td>
-              <td>${transports[1].qty}</td>
+              <td>${transportation[0].qty}</td>
+              <td>${transportation[1].qty}</td>
 			  <td>` + (questions ? questions : '') + `</td>
 			  <td>${todayFormatted}</td>
               <td>&nbsp;</td>
