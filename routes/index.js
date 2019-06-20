@@ -148,8 +148,8 @@ router.post("/checkout", (req, res, next) => {
 	   <p><b>Transportation:</b> <br/>
         <ul>
         
-              <li>Training session 07/19 ${transportation[0].qty}</li>
-              <li>Training session 07/23 ${transportation[1].qty}</li>
+              <li>Training session 07/19 Qty: ${transportation[0].qty}</li>
+              <li>Training session 07/23 Qty: ${transportation[1].qty}</li>
        </ul>
        </p>
 	   <p><b>Additional Questions<b></p>
