@@ -21,12 +21,6 @@ router.get("/", (req, res, next) => {
 
 router.post("/checkout", (req, res, next) => {
     console.log("IT HAS ENTERED THE BACK END");
-
-
-
-
-    // var mailer = new MailHandler();
-    console.log(MailHandler.html());
     const {
         clientFirstName,
         clientLastName,
@@ -71,25 +65,25 @@ router.post("/checkout", (req, res, next) => {
 
     // console.log(`THIS IS THE TOTAL BEFORE SAVING INTO DATABASE ${total}`);
 
-    // const newCart = new ShoppingCart({
-    //     clientFirstName,
-    //     clientLastName,
-    //     checkIn,
-    //     checkOut,
-    //     currentStep,
-    //     email,
-    //     fanClubNumber,
-    //     fanPlay,
-    //     hotelRooms,
-    //     hotels,
-    //     phoneNumber,
-    //     questions,
-    //     tickets,
-    //     ticketOne,
-    //     ticketTwo,
-    //     ticketThree,
-    //     transportation,
-    // });
+    const newCart = new ShoppingCart({
+        clientFirstName,
+        clientLastName,
+        checkIn,
+        checkOut,
+        currentStep,
+        email,
+        fanClubNumber,
+        fanPlay,
+        hotelRooms,
+        hotels,
+        phoneNumber,
+        questions,
+        tickets,
+        ticketOne,
+        ticketTwo,
+        ticketThree,
+        transportation,
+    });
 
 
     console.log(transportation);
@@ -109,17 +103,17 @@ router.post("/checkout", (req, res, next) => {
     })
 
 
-    // newCart
-    //     .save()
-    //     .then(savedCart => {
-    //         console.log("you have saved a new shopping cart");
-    //
-    //         res.status(200).json(savedCart);
-    //     })
-    //     .catch(err => {
-    //         console.log(err);
-    //         res.status(500).json({message: "Something went wrong", err});
-    //     });
+    newCart
+        .save()
+        .then(savedCart => {
+            console.log("you have saved a new shopping cart");
+
+            res.status(200).json(savedCart);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({message: "Something went wrong", err});
+        });
     var ticketsHtml = '';
     tickets.forEach((ticket) => {
         if (ticket.qty > 0) {
@@ -173,16 +167,7 @@ router.post("/checkout", (req, res, next) => {
     }
 
     var todayFormatted = mm + '/' + dd + '/' + yyyy;
-    var customerEmail = `<p>Hello ${clientFirstName} ${clientLastName},
-		<br />
-		<br />
-		Thank you for submitting your request for the ultimate OM US tour experience! </p>
-		<p>
-		We have received your request. We will contact you within the next 24 hours with confirmation details for your purchase order and the final price to submit payment information. Your order is complete once we have received payment.
-		<br />
-		<br />
-		<h3>Go OM Nation!</h3></p>
-			<p>Your request details:</p>` + htmlDetails;
+    var customerEmail = MailHandler.customerEmail(req.body);
     var agentEmailHtml = `<p>Hello, you have a new request in OM US TOUR EXPERIENCE Website, here are the details: </p>
     ` + htmlDetails + `
 		<table width="850" style="width:850px;min-width:850px;">

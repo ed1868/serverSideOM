@@ -604,7 +604,7 @@
 
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
-                            <h1>Hello FIRST NAME LAST NAME.</h1>
+                            <h1>Hello {FIRST_NAME} {LAST_NAME}.</h1>
 
 <p>&nbsp;</p>
 
@@ -651,33 +651,37 @@
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
                             <ul>
-	<li style="text-align: left;"><strong>Email:&nbsp;</strong>prelle.simon@me.com</li>
-	<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">Phone: </strong>438-826-6552</li>
+	<li style="text-align: left;"><strong>Email:&nbsp;</strong>{EMAIL_DATA}</li>
+	<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">Phone: </strong>{PHONE_DATA}</li>
 	<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">Tickets:</strong>
 	<ul>
-		<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">3rd Place Game or Tournament Championship, Qty:</strong> 1</li>
-		<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">D.C. United Vs Olympique de Marseille (friendly), Qty: </strong>1</li>
+        {TICKETS_DATA}
+		<!-- <li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">3rd Place Game or Tournament Championship, Qty:</strong> 1</li>
+		<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">D.C. United Vs Olympique de Marseille (friendly), Qty: </strong>1</li> -->
 	</ul>
+
 	</li>
 	<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">Hotels:</strong>
-	<ul>
+	<!-- <ul>
 		<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">Check-in: </strong>20-07-2019</li>
 		<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">Check-out:</strong> 24-07-2019</li>
 		<li style="text-align: left;"><strong>Rooms</strong>: 1</li>
 		<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">Courtyard Marriott Capitol Hill/Navy Yard</strong></li>
-	</ul>
+	</ul> -->
+    {HOTELS_DATA}
 	</li>
-	<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">Fan Club Number: </strong>OMnumber123</li>
-	<li style="text-align: left;"><strong>Friendly game: </strong>Yes</li>
+	<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">Fan Club Number: </strong>{FAN_CLUB_DATA}</li>
+	<li style="text-align: left;"><strong>Friendly game: </strong>{FRIENDLY_GAME_DATA}</li>
 	<li style="text-align: left;"><strong id="docs-internal-guid-1eb10456-7fff-6572-2675-a327939572ea">Transportation</strong>
-	<ul>
+	<!-- <ul>
 		<li style="text-align: left;"><strong>07/19 Session: </strong>1</li>
 		<li style="text-align: left;"><strong>07/23 Session: </strong>1</li>
-	</ul>
+	</ul> -->
+    {TRANSPORTATION_DATA}
 	</li>
 	<li style="text-align: left;"><strong>Additional Questions</strong>
 	<ul>
-		<li style="text-align: left;">Additional question text</li>
+		<li style="text-align: left;">{QUESTIONS_DATA}</li>
 	</ul>
 	</li>
 </ul>
