@@ -84,6 +84,7 @@ router.post("/checkout", (req, res, next) => {
         ticketOne,
         ticketTwo,
         ticketThree,
+        transports,
     });
 
 
