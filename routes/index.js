@@ -3,7 +3,7 @@ const router = express.Router();
 const bodyParser = require("body-parser");
 const nodemailer = require('nodemailer');
 const ShoppingCart = require("../models/shoppingCart");
-
+const MailHandler = require("../utils/mailHandler");
 
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -21,8 +21,6 @@ router.get("/", (req, res, next) => {
 
 router.post("/checkout", (req, res, next) => {
     console.log("IT HAS ENTERED THE BACK END");
-
-
     const {
         clientFirstName,
         clientLastName,
@@ -146,7 +144,7 @@ router.post("/checkout", (req, res, next) => {
 	   <p><b>Fan play:</b>${fanPlay}</p>
 	   <p><b>Transportation:</b> <br/>
         <ul>
-        
+
               <li>Training session 07/19 Qty: ${transportation[0].qty}</li>
               <li>Training session 07/23 Qty: ${transportation[1].qty}</li>
        </ul>
@@ -168,16 +166,7 @@ router.post("/checkout", (req, res, next) => {
     }
 
     var todayFormatted = mm + '/' + dd + '/' + yyyy;
-    var customerEmail = `<p>Hello ${clientFirstName} ${clientLastName},
-		<br />
-		<br />
-		Thank you for submitting your request for the ultimate OM US tour experience! </p>
-		<p>
-		We have received your request. We will contact you within the next 24 hours with confirmation details for your purchase order and the final price to submit payment information. Your order is complete once we have received payment.
-		<br />
-		<br />
-		<h3>Go OM Nation!</h3></p>
-			<p>Your request details:</p>` + htmlDetails;
+    var customerEmail = MailHandler.customerEmail(req.body);
     var agentEmailHtml = `<p>Hello, you have a new request in OM US TOUR EXPERIENCE Website, here are the details: </p>
     ` + htmlDetails + `
 		<table width="850" style="width:850px;min-width:850px;">
