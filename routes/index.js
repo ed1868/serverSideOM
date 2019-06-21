@@ -50,6 +50,7 @@ router.post("/checkout", (req, res, next) => {
         transportation
     } = req.body;
 
+ 
     console.log('REQ BODY ------', req.body);
 
 
