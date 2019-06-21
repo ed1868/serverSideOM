@@ -6,7 +6,7 @@
 
 var app = require('../app');
 var debug = require('debug')('server:server');
-var http = require('http');
+var https = require('https');
 var fs = require('fs');
 
 /**
@@ -19,13 +19,13 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-// var key = fs.readFileSync('/etc/letsencrypt/live/omustourexperience.com/privkey.pem');
-// var cert = fs.readFileSync('/etc/letsencrypt/live/omustourexperience.com/cert.pem');
-// var options = {
-//   key: key,
-//   cert: cert
-// };
-var server = http.createServer(app);
+var key = fs.readFileSync('/etc/letsencrypt/live/omustourexperience.com/privkey.pem');
+var cert = fs.readFileSync('/etc/letsencrypt/live/omustourexperience.com/cert.pem');
+var options = {
+  key: key,
+  cert: cert
+};
+var server = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
