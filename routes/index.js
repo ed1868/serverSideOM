@@ -34,6 +34,7 @@ router.post("/checkout", (req, res, next) => {
         email,
         fanClubNumber,
         fanPlay,
+        numOfPeople,
         hotelRooms,
         hotels,
         phoneNumber,
@@ -51,8 +52,8 @@ router.post("/checkout", (req, res, next) => {
         transportation
     } = req.body;
 
-    let subject = " TESTING THE SUBJECT";
-    let message = "THIS IS THE MESSAGE THAT WILL BE SHOWN TO COSTUMERS";
+    console.log('REQ BODY ------', req.body);
+
 
 
     // console.log('THIS IS THE DATA GIVENT TO THE BACKEND',req.body);
@@ -74,6 +75,7 @@ router.post("/checkout", (req, res, next) => {
         checkOut,
         currentStep,
         email,
+        numOfPeople,
         fanClubNumber,
         fanPlay,
         hotelRooms,
@@ -88,10 +90,7 @@ router.post("/checkout", (req, res, next) => {
     });
 
 
-    console.log(transportation);
-    console.log('TICKET ONE ------', ticketOne);
-    console.log('TICKET TWOOOO-------', ticketTwo);
-    console.log('TICKET THREE ---------', ticketThree);
+  
     let hotelName = "";
 
     let hotelNameSelector = hotels.map(items => {
