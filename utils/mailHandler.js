@@ -38,6 +38,7 @@ class mailHandler {
 							.replace('{TRANSPORTATION_DATA}', data.transportation[0].qty)
 							.replace('{QUESTIONS_DATA}', data.questions);
 
+                            
 
         return htmlContent;
     }

@@ -14,16 +14,6 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-<<<<<<< HEAD
-// var key = fs.readFileSync('/etc/letsencrypt/live/omustourexperience.com/privkey.pem');
-// var cert = fs.readFileSync('/etc/letsencrypt/live/omustourexperience.com/cert.pem');
-// var options = {
-//   key: key,
-//   cert: cert
-// };
-// var server = http.createServer(options, app);
-var server = http.createServer(app);
-=======
 var key = fs.readFileSync('/etc/letsencrypt/live/omustourexperience.com/privkey.pem');
 var cert = fs.readFileSync('/etc/letsencrypt/live/omustourexperience.com/cert.pem');
 var options = {
@@ -32,7 +22,6 @@ var options = {
 };
 var server = https.createServer(options, app);
 
->>>>>>> 4c3ef0cc3a52c160ec8e7528b3449e8206c09d1d
 /**
  * Listen on provided port, on all network interfaces.
  */
