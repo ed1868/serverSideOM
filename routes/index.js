@@ -109,6 +109,7 @@ router.post("/checkout", (req, res, next) => {
             console.log("you have saved a new shopping cart");
 
             res.status(200).json(savedCart);
+            
         })
         .catch(err => {
             console.log(err);

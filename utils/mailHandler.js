@@ -35,7 +35,7 @@ class mailHandler {
 							.replace('{HOTELS_DATA}', hotelsHtml)
                             .replace('{FAN_CLUB_DATA}', (data.fanClubNumber ? data.fanClubNumber : 'Not applied'))
 							.replace('{FRIENDLY_GAME_DATA}', (data.fanPlay ? 'Yes' : 'No'))
-							.replace('{TRANSPORTATION_DATA}', data.clientFirstName)
+							.replace('{TRANSPORTATION_DATA}', data.transportation[0].qty)
 							.replace('{QUESTIONS_DATA}', data.questions);
 
 
