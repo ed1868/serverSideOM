@@ -4,7 +4,7 @@
  */
 var app = require('../app');
 var debug = require('debug')('server:server');
-var http = require('http');
+var https = require('https');
 var fs = require('fs');
 /**
  * Get port from environment and store in Express.
@@ -14,6 +14,7 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
+<<<<<<< HEAD
 // var key = fs.readFileSync('/etc/letsencrypt/live/omustourexperience.com/privkey.pem');
 // var cert = fs.readFileSync('/etc/letsencrypt/live/omustourexperience.com/cert.pem');
 // var options = {
@@ -22,6 +23,16 @@ app.set('port', port);
 // };
 // var server = http.createServer(options, app);
 var server = http.createServer(app);
+=======
+var key = fs.readFileSync('/etc/letsencrypt/live/omustourexperience.com/privkey.pem');
+var cert = fs.readFileSync('/etc/letsencrypt/live/omustourexperience.com/cert.pem');
+var options = {
+  key: key,
+  cert: cert
+};
+var server = https.createServer(options, app);
+
+>>>>>>> 4c3ef0cc3a52c160ec8e7528b3449e8206c09d1d
 /**
  * Listen on provided port, on all network interfaces.
  */
