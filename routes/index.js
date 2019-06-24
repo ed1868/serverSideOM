@@ -47,11 +47,17 @@ router.post("/checkout", (req, res, next) => {
         nationality,
         state,
         zip,
-        transportation
+        transportation,
+        transportOneData,
+        transportTwoData
     } = req.body;
 
  
-    console.log('REQ BODY ------', req.body);
+    // console.log('REQ BODY ------', req.body);
+
+    console.log('TRANSPORT ONE DATA ---', transportOneData);
+    
+    console.log('TRANSPORT TWO DATA ---', transportTwoData);
 
 
 
@@ -86,6 +92,8 @@ router.post("/checkout", (req, res, next) => {
         ticketTwo,
         ticketThree,
         transportation,
+        transportOneData,
+        transportTwoData
     });
 
 
@@ -109,7 +117,7 @@ router.post("/checkout", (req, res, next) => {
             console.log("you have saved a new shopping cart");
 
             res.status(200).json(savedCart);
-            
+
         })
         .catch(err => {
             console.log(err);
