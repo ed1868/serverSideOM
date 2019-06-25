@@ -20,7 +20,6 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/checkout", (req, res, next) => {
-    console.log("IT HAS ENTERED THE BACK END");
     const {
         clientFirstName,
         clientLastName,
@@ -53,7 +52,6 @@ router.post("/checkout", (req, res, next) => {
     } = req.body;
 
  
-    console.log('REQ BODY ------', req.body);
 
 
     const newCart = new ShoppingCart({
@@ -81,17 +79,7 @@ router.post("/checkout", (req, res, next) => {
 
 
   
-    let hotelName = "";
 
-    let hotelNameSelector = hotels.map(items => {
-        // console.log(items);
-        if (items.selected == true) {
-            hotelName = items.hotelName;
-        }
-        if (items.selected == false) {
-            console.log('not the selected hotel');
-        }
-    })
 
 
     newCart
