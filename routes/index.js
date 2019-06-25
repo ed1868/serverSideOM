@@ -53,25 +53,8 @@ router.post("/checkout", (req, res, next) => {
     } = req.body;
 
  
-    // console.log('REQ BODY ------', req.body);
+    console.log('REQ BODY ------', req.body);
 
-    console.log('TRANSPORT ONE DATA ---', transportOneData);
-    
-    console.log('TRANSPORT TWO DATA ---', transportTwoData);
-
-
-
-    // console.log('THIS IS THE DATA GIVENT TO THE BACKEND',req.body);
-
-    // console.log(`THIS IS THE CARTS PROVIDED BY FRONT END ${cart}`);
-
-    // cart.map(items => {
-    //   console.log("this are the cart item totals");
-    //   let totalPrice = Number(items.totalPrice);
-    //   total += totalPrice;
-    // });
-
-    // console.log(`THIS IS THE TOTAL BEFORE SAVING INTO DATABASE ${total}`);
 
     const newCart = new ShoppingCart({
         clientFirstName,
