@@ -1,3 +1,4 @@
+
 const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
@@ -125,7 +126,6 @@ router.post("/checkout", (req, res, next) => {
 	   <p><b>Fan play:</b>${fanPlay}</p>
 	   <p><b>Transportation:</b> <br/>
         <ul>
-
               <li>Training session 07/19 Qty: ${transportation[0].qty}</li>
               <li>Training session 07/23 Qty: ${transportation[1].qty}</li>
        </ul>
